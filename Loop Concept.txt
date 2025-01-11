@@ -1,0 +1,51 @@
+# Vending machine items and prices
+vending_items = {
+    "1": {"name": "Chips", "price": 1.50},
+    "2": {"name": "Soda", "price": 2.00},
+    "3": {"name": "Chocolate", "price": 1.20},
+    "4": {"name": "Cookies", "price": 1.80},
+    "5": {"name": "Juice", "price": 2.50}
+}
+
+# Display the vending machine menu
+def display_menu():
+    print("\n--- Vending Machine Menu ---")
+    for key, item in vending_items.items():
+        print(f"{key}. {item['name']} - ${item['price']:.2f}")
+
+# Main vending machine logic
+def vending_machine():
+    total_amount = 0
+
+    while True:
+        display_menu()  # Show the menu to the user
+
+        # User selects an item
+        choice = input("\nSelect an item by entering the number (or 'q' to quit): ")
+
+        if choice == "q":
+            break  # Exit the vending machine loop
+
+        # Check if the choice is valid
+        if choice in vending_items:
+            item = vending_items[choice]
+            print(f"You selected {item['name']} - ${item['price']:.2f}")
+
+            # Add item price to the total amount
+            total_amount += item["price"]
+            print(f"Total so far: ${total_amount:.2f}")
+        else:
+            print("Invalid selection. Please try again.")
+
+        # Ask if the user wants to buy more items
+        more_items = input("Would you like to buy another item? (yes/no): ").strip().lower()
+        if more_items != "yes":
+            break
+
+    # Final amount and exit
+    print(f"\nThank you for using the vending machine!")
+    print(f"Your total amount is: ${total_amount:.2f}")
+    print("Have a great day!")
+
+# Run the vending machine program
+vending_machine()
